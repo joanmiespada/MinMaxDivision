@@ -1,10 +1,19 @@
 
 
+function recursive(Kgroups,Aitems)
+{
+
+    return 0;
+
+}
+
 function solution(K,M,A)
 {
-    console.log('starting');
+    //console.log('starting');
+    recursive(K,A);
     return 0;
 }
 
-//initial test
-solution(3,5,[2,1,5,1,2,2,2]);
+module.exports = {
+    MinMax:solution
+}
