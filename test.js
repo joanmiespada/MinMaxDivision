@@ -44,3 +44,4 @@ describe('MinMax', function() {
     });
   });
 });
+//https://app.codility.com/demo/results/trainingKQV292-5WD/
