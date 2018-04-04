@@ -33,23 +33,6 @@ function renderjson(obj)
     return '{ totalSum:'+ obj.totalSum  +' numElems:'+obj.numElems+'}';
 }
 
-function MinimalSum(newItem, current, depth)
-{
-
-    console.log(tabulatorHelper(depth) + renderjson(newItem)+ renderjson(current) );
-
-    if(newItem.totalSum > current.totalSum)
-    //    if(newItem.numElems>=current.numElems)
-            return newItem;
-    return current;
-}
-/*
-currentMinimalSum = MinimalSum({ 
-                    totalSum: total, 
-                    numElems: Kgroups[i].length
-                }, currentMinimalSum, depth);
-* */
-
 function recursive(Kgroups,lastGroup,Aitems,currentMinimalSum, depth)
 {
     if(Aitems.length === 0)
@@ -65,11 +48,11 @@ function recursive(Kgroups,lastGroup,Aitems,currentMinimalSum, depth)
             if(total >largeSum )
                   largeSum = total;
         }
-        console.log(tabulatorHelper(depth) + 'larger sum: '+ largeSum ); 
+        //console.log(tabulatorHelper(depth) + 'larger sum: '+ largeSum ); 
 
         if(currentMinimalSum.minimalLargeSum >largeSum ){
             currentMinimalSum.minimalLargeSum = largeSum;
-            console.log(tabulatorHelper(depth) + 'new larger sum!!!: '+ currentMinimalSum.minimalLargeSum );
+            //console.log(tabulatorHelper(depth) + 'new larger sum!!!: '+ currentMinimalSum.minimalLargeSum );
         } 
         
     }else{
@@ -78,7 +61,7 @@ function recursive(Kgroups,lastGroup,Aitems,currentMinimalSum, depth)
         for( var i=lastGroup; i< Kgroups.length; i++)
         {
             Kgroups[i] = Kgroups[i].concat(elem);
-            console.log( tabulatorHelper(depth) + groupsHelper(Kgroups) );
+            //console.log( tabulatorHelper(depth) + groupsHelper(Kgroups) );
             currentMinimalSum= recursive(Kgroups, i , AitemsLesser ,currentMinimalSum, depth+1);           
             Kgroups[i] = Kgroups[i].slice(0,Kgroups[i].length-1); 
         }
@@ -105,10 +88,6 @@ function solution(K,M,A)
     recursive(groups,0,A, sumFinal,0 );
     return sumFinal.minimalLargeSum;
 }
-
-var aux = solution(3,5,[2,1,5,1,2,2,2]);
-console.log(aux);
-//solution(2,2,[1,1,1,1,2]);
 
 module.exports = {
     MinMax:solution
