@@ -32,7 +32,7 @@ function renderjson(obj)
 {
     return '{ totalSum:'+ obj.totalSum  +' numElems:'+obj.numElems+'}';
 }
-/*
+
 function MinimalSum(newItem, current, depth)
 {
 
@@ -43,14 +43,14 @@ function MinimalSum(newItem, current, depth)
             return newItem;
     return current;
 }
-
+/*
 currentMinimalSum = MinimalSum({ 
                     totalSum: total, 
                     numElems: Kgroups[i].length
                 }, currentMinimalSum, depth);
 * */
 
-function recursive(Kgroups,Aitems,currentMinimalSum, depth)
+function recursive(Kgroups,lastGroup,Aitems,currentMinimalSum, depth)
 {
     if(Aitems.length === 0)
     {
@@ -75,11 +75,11 @@ function recursive(Kgroups,Aitems,currentMinimalSum, depth)
     }else{
         var AitemsLesser = Aitems.slice(1);
         var elem = Aitems.slice(0,1);
-        for( var i=0; i< Kgroups.length; i++)
+        for( var i=lastGroup; i< Kgroups.length; i++)
         {
             Kgroups[i] = Kgroups[i].concat(elem);
             console.log( tabulatorHelper(depth) + groupsHelper(Kgroups) );
-            currentMinimalSum= recursive(Kgroups, AitemsLesser ,currentMinimalSum, depth+1);           
+            currentMinimalSum= recursive(Kgroups, i , AitemsLesser ,currentMinimalSum, depth+1);           
             Kgroups[i] = Kgroups[i].slice(0,Kgroups[i].length-1); 
         }
     }
@@ -97,17 +97,17 @@ function setUpGroups(numGroups)
 
 function solution(K,M,A)
 {
-    console.log('starting');
+    //console.log('starting');
     var sumFinal= { 
         minimalLargeSum: Number.MAX_VALUE 
     };
     var groups = setUpGroups(K);
-    recursive(groups,A, sumFinal,0 );
+    recursive(groups,0,A, sumFinal,0 );
     return sumFinal.minimalLargeSum;
 }
 
-//var aux = solution(3,5,[2,1,5,1,2,2,2]);
-//console.log(aux);
+var aux = solution(3,5,[2,1,5,1,2,2,2]);
+console.log(aux);
 //solution(2,2,[1,1,1,1,2]);
 
 module.exports = {
