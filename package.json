@@ -4,6 +4,6 @@
   },
   "scripts": {
     "test": "mocha",
-    "exec":"node main.js"
+    "start":"node main.js"
   }
 }

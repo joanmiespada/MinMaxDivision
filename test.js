@@ -12,6 +12,13 @@ function checkMemory()
 describe('MinMax', function() {
   describe('test1', function() {
     
+    it('should return 4 when the values are (3,4,[1,2,3,4])', function() {
+      console.time('test');  
+      assert.equal(main.MinMax(3,4,[1,2,3,4]) , 4);
+      console.timeEnd('test');
+      checkMemory()
+    });
+
     it('should return 6 when the values are (3,5,[2,1,5,1,2,2,2])', function() {
       console.time('test');  
       assert.equal(main.MinMax(3,5,[2,1,5,1,2,2,2]) , 6);
@@ -38,7 +45,7 @@ describe('MinMax', function() {
     });
     it('limits (10000,10000,[0,10000,0])', function() {
           console.time('test'); 
-          assert.equal(main.MinMax(10000,10000,[0,10000,0]) , 0);
+          assert.equal(main.MinMax(100000,10000,[0,10000,0]) , 0);
           console.timeEnd('test');
           checkMemory();
     });
